@@ -1,6 +1,32 @@
 import os
 import json
 
+class Expensefilemanager:
+  def __init__(self,filename,mode):
+    self.filename=filename
+    self.mode=mode
+    self.file=None
+    
+  def __enter__(self):
+    try:
+      self.file=open(self.filename,self.mode)
+      return self.file
+    except FileNotFoundError:
+      print("file not found....creating a new one")
+      if 'w' in self.mode:
+        self.file=open(self.filename,self.mode)
+        return self.file
+      return None
+    
+  def __exit__(self,exc_type,exc_value,traceback):
+    if self.file:
+      self.file.close()
+        
+    if exc_type is not None:
+      print(f"An error ocurred :{exc_value}")
+      return True 
+      
+      
 class Expenses:
   def __init__(self,name,cost_of_expense):
     self.name=name
@@ -26,7 +52,7 @@ class ExpenseTracker:
     if not os.path.exists(self.filename):
       return []
 
-    with open(self.filename,'r') as file:
+    with Expensefilemanager(self.filename,'r') as file:
       try:
         return json.load(file)
 
@@ -49,7 +75,7 @@ class ExpenseTracker:
     return savings
 
   def save_expense(self):
-    with open(self.filename,'w') as file:
+    with Expensefilemanager(self.filename,'w') as file:
       json.dump(self.expenses,file,indent=4)
 
   def add_expense(self,expense):
