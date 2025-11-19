@@ -79,14 +79,6 @@ Coding consistently is a discipline I’m building to sharpen my technical skill
 
 ---
 
-## 📬 Let's Connect
-
-- 💼 [LinkedIn](https://www.linkedin.com/in/yourname)
-- 📝 [Medium](https://medium.com/@yourusername)
-- 🧠 [Twitter (optional)](https://twitter.com/yourhandle)
-
----
-
 Thanks for checking out my journey. If you’re doing #100DaysOfCode too, let’s support each other!
 
 
