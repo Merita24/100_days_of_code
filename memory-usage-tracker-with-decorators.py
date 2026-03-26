@@ -83,15 +83,21 @@ if __name__=="__main__":
         choice=input("Enter choice:") 
         
         if choice=="1":
-            filemanager1=FileManager(r"\Users\ADMIN\Desktop\merita\example.txt")
-            filemanager1.create_file("Hello world, welcome to python")
+            directory = r"C:\Users\ADMIN\Desktop\merita"
+            filename = input("Enter the name of your file (with extension, e.g., example.txt): ")
+            path = os.path.join(directory, filename)
+            filemanager1 = FileManager(path)
+            content=input("enter file content:")
+            filemanager1.create_file(content)
             logging.info("file created successfully")
+            memorytracker1.track_file(filename,filemanager1)
             
         if choice=="2":
             if not filemanager1:
                 print("create a file first!")
                 continue
-            filemanager1.append_file("We are learning python basics")
+            content=input("Enter file content:")
+            filemanager1.append_file(content)
             logging.info("File appended successfully")
 
         if choice=="3":
